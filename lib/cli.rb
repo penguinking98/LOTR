@@ -34,7 +34,7 @@ cli = CLI.new
 cli.fetch_character_pool 
 cli.prompt_user_narrow_by_gender
 #cli.prompt_user_narrow_by_race
-#cli.show_matches   
+cli.show_matches   
 
 
 

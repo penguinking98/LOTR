@@ -14,7 +14,7 @@ class CLI
          # Show distinct list of genders
         genders = @pool.collect {|character| character.gender}.uniq       
         genders.each_with_index{|gender, i| puts "\t#{i+1}. #{gender}" }
-        # Ask user to type in a gender number2
+        # Ask user to type in a gender number
         input = Readline.readline("> ", true)
         choice = genders[input.to_i-1]
         puts "You picked : #{choice}"
@@ -22,6 +22,21 @@ class CLI
         @pool.delete_if {|character| character.gender == choice}
         # Tell user how many characters in pool now
         puts "Character pool is now #{@pool.size} characters."
+    end
+    def prompt_user_narrow_by_race
+        #shoe list of races
+        puts "Please select from the following races."
+        race = @pool.collect {|character| character.race}.uniq     
+        race.each_with_index{|race, i| puts "\t#{i+1}. #{race}" }
+        #ask users to type in race number
+        input = Readline.readline("> ", true)
+        choice = race[input.to_i-1]
+        puts "You picked : #{choice}" 
+        #narrow pool by race
+        @pool.delete_if {|character| character.gender == choice}
+         # Tell user how many characters in pool now
+         puts "Character pool is now #{@pool.size} characters."
+
     end
     def show_matches
         puts "The following #{@pool.size} characters match your criteria."
@@ -33,7 +48,7 @@ end
 cli = CLI.new
 cli.fetch_character_pool 
 cli.prompt_user_narrow_by_gender
-#cli.prompt_user_narrow_by_race
+cli.prompt_user_narrow_by_race
 cli.show_matches   
 
 

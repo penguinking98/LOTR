@@ -33,6 +33,7 @@ class LotrApi
             character.realm = characterstuff['realm']
             character.hair = characterstuff['hair']
             character.height = characterstuff['height']
+            character.gender = characterstuff['gender']
            
 
            characters << character

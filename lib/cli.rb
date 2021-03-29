@@ -61,7 +61,7 @@ class CLI
         @pool.each {|character| puts "\t#{character}"}
     end
     def thanks
-    puts "Thank you for using my Lord  of the Rings app!"
+    puts "Thank you for using my Lord of the Rings app!"
     end
     #def_valid_input
     #end
@@ -81,3 +81,5 @@ cli.thanks
 #expand on this to list characters in a number pool and find info specific to the character
 #possibly define a method to exclude invalid inputs?
 #current bug: hitting enter will register a valid input without typing in a number and a 1200 line response comes out
+#add looping 
+#create bin file and utilize the character class as an object

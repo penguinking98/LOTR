@@ -61,7 +61,7 @@ class CLI
         @pool.each {|character| puts "\t#{character}"}
     end
     def thanks
-    puts "Thank you for using my app!"
+    puts "Thank you for using my Lord  of the Rings app!"
     end
     #def_valid_input
     #end

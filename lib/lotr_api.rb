@@ -43,3 +43,5 @@ class LotrApi
         return characters
     end
 end
+
+#create a EMV file to store the bearer token in the future

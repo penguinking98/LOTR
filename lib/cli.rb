@@ -14,7 +14,7 @@ class CLI
     def prompt_user_narrow_by_gender
         puts "Please select, from the following genders that appear in Lord of the Rings: "
          # Show distinct list of genders
-        genders = @pool.collect {|character| character.gender}.uniq       
+        genders = @pool.collect {|character| character.gender}.uniq.compact       
         genders.each_with_index{|gender, i| puts "\t#{i+1}. #{gender}" }
         # Ask user to type in a gender number
         input = Readline.readline("> ", true)
@@ -29,7 +29,7 @@ class CLI
     def prompt_user_narrow_by_race
         #show list of races
         puts "Please select from the following races."
-        race = @pool.collect {|character| character.race}.uniq     
+        race = @pool.collect {|character| character.race}.uniq.compact    
         race.each_with_index{|race, i| puts "\t#{i+1}. #{race}" }
         #ask users to type in race number
         input = Readline.readline("> ", true)

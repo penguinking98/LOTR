@@ -10,7 +10,7 @@ class CLI
         
     end
     def prompt_user_narrow_by_gender
-        puts "Please select from the following genders that appear in Lord of the Rings: "
+        puts "Please select, from the following genders that appear in Lord of the Rings: "
          # Show distinct list of genders
         genders = @pool.collect {|character| character.gender}.uniq       
         genders.each_with_index{|gender, i| puts "\t#{i+1}. #{gender}" }

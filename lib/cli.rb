@@ -78,5 +78,6 @@ cli.thanks
 
 
 
+#expand on this to list characters in a number pool and find info specific to the character
 #possibly define a method to exclude invalid inputs?
 #current bug: hitting enter will register a valid input without typing in a number and a 1200 line response comes out

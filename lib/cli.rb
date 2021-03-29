@@ -4,11 +4,13 @@ require "pry"
 
 
 class CLI
+    #create a pool of all available characters
     def fetch_character_pool
         api = LotrApi.new
         @pool = api.get_characters.sort_by {|c| c.name}
         
     end
+    #narrow pool by gender
     def prompt_user_narrow_by_gender
         puts "Please select, from the following genders that appear in Lord of the Rings: "
          # Show distinct list of genders
@@ -23,6 +25,7 @@ class CLI
         # Tell user how many characters in pool now
         puts "Character pool is now #{@pool.size} characters."
     end
+    #narrow pool by race
     def prompt_user_narrow_by_race
         #show list of races
         puts "Please select from the following races."
@@ -72,3 +75,4 @@ cli.show_matches
 
 
 #possibly define a method to exclude invalid inputs?
+#current bug: hitting enter will register a valid input without typing in a number and a 1200 line response comes out

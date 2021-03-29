@@ -60,7 +60,9 @@ class CLI
         puts "The following #{@pool.size} characters match your criteria."
         @pool.each {|character| puts "\t#{character}"}
     end
-       
+    
+    #def_valid_input
+    #end
 end
 
 cli = CLI.new

@@ -60,7 +60,9 @@ class CLI
         puts "The following #{@pool.size} characters match your criteria."
         @pool.each {|character| puts "\t#{character}"}
     end
-    
+    def thanks
+    puts "Thank you for using my app!"
+    end
     #def_valid_input
     #end
 end
@@ -72,7 +74,7 @@ cli.prompt_user_narrow_by_race
 #cli.prompt_user_narrow_by_realm
 
 cli.show_matches   
-
+cli.thanks
 
 
 

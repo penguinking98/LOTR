@@ -83,3 +83,5 @@ cli.thanks
 #current bug: hitting enter will register a valid input without typing in a number and a 1200 line response comes out
 #add looping 
 #create bin file and utilize the character class as an object
+#promtp user to find out specific info on a character or loop back to start over
+#eliminate the multiple versions of male and merge them

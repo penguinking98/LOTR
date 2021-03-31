@@ -16,9 +16,9 @@ class LotrApi
             http.request(req)
         }
         if res.is_a?(Net::HTTPSuccess)
-            puts 'Yay'
+            puts "Success"
         else 
-            puts "Ya failed."
+            puts "Something went wrong"
         end
         data = JSON.parse(res.body)
         characterdata = data['docs']

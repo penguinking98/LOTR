@@ -41,6 +41,22 @@ class CLI
          puts "Character pool is now #{@pool.size} characters."
 
     end
+    def prompt_user_narrow_by_name
+        #show list of races
+        puts "Please select from the following names."
+        name = @pool.collect {|character| character.name}.uniq.compact    
+        name.each_with_index{|name, i| puts "\t#{i+1}. #{name}" }
+        #ask users to type in name number
+        input = Readline.readline("> ", true)
+        choice = name[input.to_i-1]
+        puts "You picked : #{choice}" 
+        #narrow pool by race
+        @pool.delete_if {|character| character.race== choice}
+         # Tell user how many characters in pool now
+         puts "Character pool is now #{@pool.size} characters."
+
+    end
+    
     #def prompt_user_narrow_by_realm
         #puts "Please select from the following ages."
         #realm = @pool.collect {|character| character.realm}.uniq     
@@ -67,10 +83,12 @@ class CLI
     #end
 end
 
+
 cli = CLI.new
 cli.fetch_character_pool 
 cli.prompt_user_narrow_by_gender
 cli.prompt_user_narrow_by_race
+cli.prompt_user_narrow_by_name
 #cli.prompt_user_narrow_by_realm
 
 cli.show_matches   

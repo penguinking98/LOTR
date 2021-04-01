@@ -18,7 +18,7 @@ class CLI
     end
    def handle_quit_choice(choice)
     if ['Q','QUIT','EXIT'].include?(choice.upcase)
-        puts "Goodbye, thanks for using the app"
+        thanks
         exit(0)
      end
     end
@@ -84,7 +84,7 @@ class CLI
         @pool.each {|character| puts "\t#{character}"}
     end
     def thanks
-    puts "Thank you for using my Lord of the Rings app!"
+        puts "Thank you for using my Lord of the Rings app!"
     end
    
 end

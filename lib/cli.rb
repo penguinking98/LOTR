@@ -4,6 +4,9 @@ require "pry"
 
 
 class CLI
+    def call
+        
+    end
     def greeting
         puts "Hello, this is the Lord of the Rings character app. You can find a character by typing in a number. You may type Q at any point to exit the app or R to restart."
     end
@@ -103,7 +106,6 @@ cli.prompt_user_narrow_by_gender
 cli.prompt_user_narrow_by_race
 cli.prompt_user_narrow_by_name
 #cli.prompt_user_narrow_by_realm
-
 cli.show_matches   
 cli.thanks
 

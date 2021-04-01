@@ -23,8 +23,6 @@ class CLI
         genders = @pool.collect {|character| character.gender}.uniq.compact       
         genders.each_with_index{|gender, i| puts "\t#{i+1}. #{gender}" }
         # Ask user to type in a gender number
-        def valid_input
-        end
         input = Readline.readline("> ", true)
         handle_quit_choice(input)
         choice = genders[input.to_i-1]

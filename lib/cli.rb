@@ -4,6 +4,10 @@ require "pry"
 
 
 class CLI
+   def handle_quit_choice(choice)
+    if choice == "Quit"
+        then exit
+   end
     #create a pool of all available characters
     def fetch_character_pool
         api = LotrApi.new
@@ -17,7 +21,9 @@ class CLI
         genders = @pool.collect {|character| character.gender}.uniq.compact       
         genders.each_with_index{|gender, i| puts "\t#{i+1}. #{gender}" }
         # Ask user to type in a gender number
+        def valid_input
         input = Readline.readline("> ", true)
+        handle_quit_choice(choice)
         choice = genders[input.to_i-1]
         puts "You picked : #{choice}"
         # Narrow the pool by gender
@@ -95,7 +101,7 @@ cli.show_matches
 cli.thanks
 
 
-
+#q to quit or r to return to the beginning of the app
 #expand on this to list characters in a number pool and find info specific to the character
 #possibly define a method to exclude invalid inputs?
 #current bug: hitting enter will register a valid input without typing in a number and a 1200 line response comes out

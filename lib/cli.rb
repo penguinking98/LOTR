@@ -5,7 +5,7 @@ require "pry"
 
 class CLI
     def greeting
-        puts "Hello, this is the Lord of the Rings character app. You can find a character by typing in a number. You may type Q at any point to exit the app."
+        puts "Hello, this is the Lord of the Rings character app. You can find a character by typing in a number. You may type Q at any point to exit the app or R to restart."
     end
    def handle_quit_choice(choice)
     if ['Q','QUIT','EXIT'].include?(choice.upcase)

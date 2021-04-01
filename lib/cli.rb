@@ -4,6 +4,9 @@ require "pry"
 
 
 class CLI
+    def greeting
+        puts "Hello, this is the Lord of the Rings character app. You can find a character by typing in a number. You may type Q at any point to exit the app."
+    end
    def handle_quit_choice(choice)
     if ['Q','QUIT','EXIT'].include?(choice.upcase)
         puts "Goodbye, thanks for using the app"
@@ -94,6 +97,7 @@ end
 
 
 cli = CLI.new
+cli.greeting 
 cli.fetch_character_pool 
 cli.prompt_user_narrow_by_gender
 cli.prompt_user_narrow_by_race

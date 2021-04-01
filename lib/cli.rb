@@ -36,7 +36,7 @@ class CLI
         choice = race[input.to_i-1]
         puts "You picked : #{choice}" 
         #narrow pool by race
-        @pool.delete_if {|character| character.gender == choice}
+        @pool.delete_if {|character| character.race == choice}
          # Tell user how many characters in pool now
          puts "Character pool is now #{@pool.size} characters."
 
@@ -51,7 +51,7 @@ class CLI
         choice = name[input.to_i-1]
         puts "You picked : #{choice}" 
         #narrow pool by race
-        @pool.delete_if {|character| character.gender== choice}
+        @pool.delete_if {|character| character.name== choice}
          # Tell user how many characters in pool now
          puts "Character pool is now #{@pool.size} characters."
 

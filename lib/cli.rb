@@ -5,9 +5,11 @@ require "pry"
 
 class CLI
    def handle_quit_choice(choice)
-    if choice == "Quit"
-        then exit
-   end
+    if ['Q','QUIT','EXIT'].include?(choice.upcase)
+        puts "Goodbye, thanks for using the app"
+        exit(0)
+     end
+    end
     #create a pool of all available characters
     def fetch_character_pool
         api = LotrApi.new
@@ -16,14 +18,15 @@ class CLI
     end
     #narrow pool by gender
     def prompt_user_narrow_by_gender
-        puts "Please select, from the following genders that appear in Lord of the Rings: "
+        puts "Please select from the following genders that appear in Lord of the Rings or type Q to restart: "
          # Show distinct list of genders
         genders = @pool.collect {|character| character.gender}.uniq.compact       
         genders.each_with_index{|gender, i| puts "\t#{i+1}. #{gender}" }
         # Ask user to type in a gender number
         def valid_input
+        end
         input = Readline.readline("> ", true)
-        handle_quit_choice(choice)
+        handle_quit_choice(input)
         choice = genders[input.to_i-1]
         puts "You picked : #{choice}"
         # Narrow the pool by gender
@@ -34,11 +37,12 @@ class CLI
     #narrow pool by race
     def prompt_user_narrow_by_race
         #show list of races
-        puts "Please select from the following races."
+        puts "Please select from the following races or type Q to restart."
         race = @pool.collect {|character| character.race}.uniq.compact    
         race.each_with_index{|race, i| puts "\t#{i+1}. #{race}" }
         #ask users to type in race number
         input = Readline.readline("> ", true)
+        handle_quit_choice(input)
         choice = race[input.to_i-1]
         puts "You picked : #{choice}" 
         #narrow pool by race
@@ -49,11 +53,12 @@ class CLI
     end
     def prompt_user_narrow_by_name
         #show list of races
-        puts "Please select from the following names."
+        puts "Please select from the following names or type Q to restart."
         name = @pool.collect {|character| character.name}.uniq.compact    
         name.each_with_index{|name, i| puts "\t#{i+1}. #{name}" }
         #ask users to type in name number
         input = Readline.readline("> ", true)
+        handle_quit_choice(input)
         choice = name[input.to_i-1]
         puts "You picked : #{choice}" 
         #narrow pool by race

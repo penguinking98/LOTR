@@ -104,7 +104,7 @@ class CLI
         input_int = nil
         until valid do 
             #show list of races
-            puts "Please select from the following names or type Q to restart."
+            
             names = @pool.collect {|character| character.name}.uniq.compact    
             names.each_with_index{|name, i| puts "\t#{i+1}. #{name}" }
             #ask users to type in name number

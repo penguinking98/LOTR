@@ -7,6 +7,7 @@ class Character
         return true 
     end
     def self.new_from_collection(characters)
+        #original pool exists, then send user a copy of the pool minus the irrelevant results as to not affect the original pool
         @@all = characters.select { |c| c.is_valid? }
             
     end

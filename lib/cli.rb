@@ -66,7 +66,7 @@ class CLI
         end
         choice = genders[input_int - 1]
         puts "You picked : #{choice}"
-        # Narrow the pool by gender
+        # Narrow the pool 
         @pool.delete_if {|character| character.gender == choice}
         # Tell user how many characters in pool now
         puts "Character pool is now #{@pool.size} characters."
@@ -75,41 +75,53 @@ class CLI
         
     #narrow pool by race
     def prompt_user_narrow_by_race
-        
-        #show list of races
-        puts "Please select from the following races or type Q to restart."
-        race = @pool.collect {|character| character.race}.uniq.compact    
-        race.each_with_index{|race, i| puts "\t#{i+1}. #{race}" }
-        #ask users to type in race number
-        input = Readline.readline("> ", true)
-        handle_quit_choice(input)
-        handle_restart_choice(input)
-        return if @restart
-        choice = race[input.to_i-1]
-        puts "You picked : #{choice}" 
-        #narrow pool by race
+        valid = false
+        input_int = nil
+        until valid do 
+            #show list of races
+            puts "Please select from the following races or type Q to restart."
+            races = @pool.collect {|character| character.race}.uniq.compact    
+            races.each_with_index{|race, i| puts "\t#{i+1}. #{race}" }
+            #ask users to type in race number
+            input = Readline.readline("> ", true)
+            handle_quit_choice(input)
+            handle_restart_choice(input)
+            return if @restart
+            input_int = input.to_i
+            valid = input_int.between?(1,races.size)
+        end
+        choice = races[input_int - 1]
+        puts "You picked : #{choice}"
+        # Narrow the pool
         @pool.delete_if {|character| character.race == choice}
-         # Tell user how many characters in pool now
-         puts "Character pool is now #{@pool.size} characters."
-
+        # Tell user how many characters in pool now
+        puts "Character pool is now #{@pool.size} characters."
     end
+    
+        
     def prompt_user_narrow_by_name
-        #show list of races
-        puts "Please select from the following names or type Q to restart."
-        name = @pool.collect {|character| character.name}.uniq.compact    
-        name.each_with_index{|name, i| puts "\t#{i+1}. #{name}" }
-        #ask users to type in name number
-        input = Readline.readline("> ", true)
-        handle_quit_choice(input)
-        handle_restart_choice(input)
-        return if @restart
-        choice = name[input.to_i-1]
-        puts "You picked : #{choice}" 
-        #narrow pool by race
-        @pool.delete_if {|character| character.name== choice}
-         # Tell user how many characters in pool now
-         puts "Character pool is now #{@pool.size} characters."
-
+        valid = false
+        input_int = nil
+        until valid do 
+            #show list of races
+            puts "Please select from the following names or type Q to restart."
+            names = @pool.collect {|character| character.name}.uniq.compact    
+            names.each_with_index{|name, i| puts "\t#{i+1}. #{name}" }
+            #ask users to type in name number
+            input = Readline.readline("> ", true)
+            handle_quit_choice(input)
+            handle_restart_choice(input)
+            return if @restart
+            input_int = input.to_i
+            valid = input_int.between?(1,names.size)
+        end
+        choice = names[input_int - 1]
+        character = @pool.select {|c| c.name == choice}.first
+        puts "\n* * * You picked : #{choice} * * *"
+        puts "  - NAME: #{character.name}"
+        puts "  - SPOUSE: #{character.spouse}"
+        # Narrow the pool
+        @pool.delete_if {|character| character.name != choice}
     end
     
        
@@ -118,7 +130,7 @@ class CLI
         @pool.each {|character| puts "\t#{character}"}
     end
     def thanks
-        puts "Thank you for using my Lord of the Rings app!"
+        puts "Thank you for using my Lord of the Rings app!\n\n"
     end
    
 end

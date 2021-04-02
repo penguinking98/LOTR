@@ -72,6 +72,7 @@ class CLI
         
     #narrow pool by race
     def prompt_user_narrow_by_race
+        
         #show list of races
         puts "Please select from the following races or type Q to restart."
         race = @pool.collect {|character| character.race}.uniq.compact    

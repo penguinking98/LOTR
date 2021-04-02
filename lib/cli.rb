@@ -119,6 +119,7 @@ class CLI
         end
         choice = names[input_int - 1]
         character = @pool.select {|c| c.name == choice}.first
+        #show details for each character!
         puts "\n* * * You picked : #{choice} * * *"
         puts "  - NAME: #{character.name}"
         puts "  - SPOUSE: #{character.spouse}"
@@ -128,7 +129,6 @@ class CLI
         puts "  - HEIGHT: #{character.height}"
         puts "  - HAIR: #{character.hair}"
         puts "  - REALM: #{character.realm}"
-        puts "  - GENDER: #{character.gender}"
         # Narrow the pool
         @pool.delete_if {|character| character.name != choice}
     end

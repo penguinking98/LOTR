@@ -46,21 +46,28 @@ class CLI
     end
     #narrow pool by gender
     def prompt_user_narrow_by_gender
-        puts "Please select from the following genders that appear in Lord of the Rings or type Q to restart: "
-         # Show distinct list of genders
-        genders = @pool.collect {|character| character.gender}.uniq.compact       
-        genders.each_with_index{|gender, i| puts "\t#{i+1}. #{gender}" }
-        # Ask user to type in a gender number
-        input = Readline.readline("> ", true)
-        handle_quit_choice(input)
-        handle_restart_choice(input)
-        return if @restart
-        choice = genders[input.to_i-1]
+        valid = false
+        input_int = nil
+        until valid do 
+            puts "Please select from the following genders that appear in Lord of the Rings or type Q to restart: "
+            # Show distinct list of genders
+            genders = @pool.collect {|character| character.gender}.uniq.compact       
+            genders.each_with_index{|gender, i| puts "\t#{i+1}. #{gender}" }
+            # Ask user to type in a gender number
+            input = Readline.readline("> ", true)
+            handle_quit_choice(input)
+            handle_restart_choice(input)
+            return if @restart
+            input_int = input.to_i
+            valid = input_int.between?(1,genders.size)
+        end
+        choice = genders[input_int - 1]
         puts "You picked : #{choice}"
         # Narrow the pool by gender
         @pool.delete_if {|character| character.gender == choice}
         # Tell user how many characters in pool now
         puts "Character pool is now #{@pool.size} characters."
+        
     end
         
     #narrow pool by race

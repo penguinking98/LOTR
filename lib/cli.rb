@@ -4,18 +4,34 @@ require "pry"
 
 
 class CLI
+    
     def call
-        greeting 
-        fetch_character_pool 
-        prompt_user_narrow_by_gender
-        prompt_user_narrow_by_race
-        prompt_user_narrow_by_name
-        show_matches   
-        thanks
+       
+        while true do
+            @restart = false
+            greeting 
+            fetch_character_pool 
+            prompt_user_narrow_by_gender
+            next if @restart
+            prompt_user_narrow_by_race
+            next if @restart
+            prompt_user_narrow_by_name
+            next if @restart
+            show_matches  
+             
+            thanks
+        end
     end
     def greeting
         puts "Hello, this is the Lord of the Rings character app. You can find a character by typing in a number. You may type Q at any point to exit the app or R to restart."
     end
+    def handle_restart_choice(choice)
+        if ['R','RESTART'].include?(choice.upcase)
+           @restart = true
+            puts "Restarting...\n\n"
+        end
+    end
+
    def handle_quit_choice(choice)
     if ['Q','QUIT','EXIT'].include?(choice.upcase)
         thanks
@@ -37,6 +53,8 @@ class CLI
         # Ask user to type in a gender number
         input = Readline.readline("> ", true)
         handle_quit_choice(input)
+        handle_restart_choice(input)
+        return if @restart
         choice = genders[input.to_i-1]
         puts "You picked : #{choice}"
         # Narrow the pool by gender
@@ -44,6 +62,7 @@ class CLI
         # Tell user how many characters in pool now
         puts "Character pool is now #{@pool.size} characters."
     end
+        
     #narrow pool by race
     def prompt_user_narrow_by_race
         #show list of races
@@ -53,6 +72,8 @@ class CLI
         #ask users to type in race number
         input = Readline.readline("> ", true)
         handle_quit_choice(input)
+        handle_restart_choice(input)
+        return if @restart
         choice = race[input.to_i-1]
         puts "You picked : #{choice}" 
         #narrow pool by race
@@ -69,6 +90,8 @@ class CLI
         #ask users to type in name number
         input = Readline.readline("> ", true)
         handle_quit_choice(input)
+        handle_restart_choice(input)
+        return if @restart
         choice = name[input.to_i-1]
         puts "You picked : #{choice}" 
         #narrow pool by race

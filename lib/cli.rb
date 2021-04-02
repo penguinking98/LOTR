@@ -26,6 +26,7 @@ class CLI
         puts "Hello, this is the Lord of the Rings character app. You can find a character by typing in a number. You may type Q at any point to exit the app or R to restart."
     end
     def handle_restart_choice(choice)
+        #gives the user the option to restart the application
         if ['R','RESTART'].include?(choice.upcase)
            @restart = true
             puts "Restarting...\n\n"

@@ -8,6 +8,7 @@ class CLI
     def call
         load_characters
         while true do
+            #gives stopping points to either continue or restart
             @restart = false
             greeting 
             fetch_character_pool 
@@ -80,7 +81,7 @@ class CLI
         input_int = nil
         until valid do 
             #show list of races
-            puts "Please select from the following races or type Q to restart."
+            puts "Please select from the following races!"
             races = @pool.collect {|character| character.race}.uniq.compact    
             races.each_with_index{|race, i| puts "\t#{i+1}. #{race}" }
             #ask users to type in race number
@@ -121,6 +122,13 @@ class CLI
         puts "\n* * * You picked : #{choice} * * *"
         puts "  - NAME: #{character.name}"
         puts "  - SPOUSE: #{character.spouse}"
+        puts "  - RACE: #{character.race}"
+        puts "  - BIRTH: #{character.birth}"
+        puts "  - DEATH: #{character.death}"
+        puts "  - HEIGHT: #{character.height}"
+        puts "  - HAIR: #{character.hair}"
+        puts "  - REALM: #{character.realm}"
+        puts "  - GENDER: #{character.gender}"
         # Narrow the pool
         @pool.delete_if {|character| character.name != choice}
     end

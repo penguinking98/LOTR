@@ -105,6 +105,7 @@ class CLI
     
         
     def prompt_user_narrow_by_name
+        #gives the specific data from the API about the character
         valid = false
         input_int = nil
         until valid do 

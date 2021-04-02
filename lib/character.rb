@@ -12,9 +12,11 @@ class Character
             
     end
     def self.all
+        #clone the original pool
         @@all.clone
     end
     def to_s
+        #show the character name
         "Character  - #{name} "
     end
     

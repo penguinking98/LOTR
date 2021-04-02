@@ -54,14 +54,16 @@ class CLI
         valid = false
         input_int = nil
         until valid do 
-            puts "Please select from the following genders that appear in Lord of the Rings or type Q to restart: "
+            puts "Please select from the following genders that appear in Lord of the Rings! "
             # Show distinct list of genders
             genders = @pool.collect {|character| character.gender}.uniq.compact       
             genders.each_with_index{|gender, i| puts "\t#{i+1}. #{gender}" }
             # Ask user to type in a gender number
             input = Readline.readline("> ", true)
+            #the wo methods below give the user the option to quit or restart
             handle_quit_choice(input)
             handle_restart_choice(input)
+            #loops this section until a valid input is detected
             return if @restart
             input_int = input.to_i
             valid = input_int.between?(1,genders.size)
@@ -88,6 +90,7 @@ class CLI
             input = Readline.readline("> ", true)
             handle_quit_choice(input)
             handle_restart_choice(input)
+            #loops this section until a valid input is detected
             return if @restart
             input_int = input.to_i
             valid = input_int.between?(1,races.size)
@@ -106,7 +109,6 @@ class CLI
         input_int = nil
         until valid do 
             #show list of races
-            
             names = @pool.collect {|character| character.name}.uniq.compact    
             names.each_with_index{|name, i| puts "\t#{i+1}. #{name}" }
             #ask users to type in name number
@@ -133,7 +135,6 @@ class CLI
         @pool.delete_if {|character| character.name != choice}
     end
     
-       
     def show_matches
         puts "The following #{@pool.size} characters match your criteria."
         @pool.each {|character| puts "\t#{character}"}

@@ -6,7 +6,7 @@ require "pry"
 class CLI
     
     def call
-       
+        load_characters
         while true do
             @restart = false
             greeting 
@@ -39,10 +39,13 @@ class CLI
      end
     end
     #create a pool of all available characters
-    def fetch_character_pool
+    def load_characters
         api = LotrApi.new
-        @pool = api.get_characters.sort_by {|c| c.name}
-        
+        characters = api.get_characters.sort_by {|c| c.name}
+        Character.new_from_collection(characters)
+    end
+    def fetch_character_pool
+        @pool = Character.all
     end
     #narrow pool by gender
     def prompt_user_narrow_by_gender
@@ -120,7 +123,6 @@ class CLI
    
 end
 
-    CLI.new.call
 
 
 #q to quit or r to return to the beginning of the app
